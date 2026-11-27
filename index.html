@@ -155,3 +155,969 @@
             font-weight: 700;
             font-size: 0.95rem;
             color: var(--secondary);
+        }
+
+        input, select {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #f8fafc;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        /* أزرار المواد */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .subject-card {
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .subject-card.math.selected {
+            border-color: var(--math);
+            background: #eff6ff;
+        }
+
+        .subject-card.science.selected {
+            border-color: var(--science);
+            background: #ecfdf5;
+        }
+
+        .subject-icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        /* قائمة الدروس */
+        .lessons-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .lesson-item {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+
+        .lesson-item:hover {
+            border-color: var(--accent);
+            background: white;
+        }
+
+        .lesson-item.active-lesson {
+            border-color: var(--primary);
+            background: #fff1f2;
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: #e2e8f0;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* منطقة الدرس والنشاط */
+        .lesson-summary {
+            background: #f0f9ff;
+            border-right: 5px solid var(--accent);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .question-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.6rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .option-label:hover {
+            border-color: var(--accent);
+        }
+
+        .option-label input[type="radio"] {
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* الأزرار الرئيسية */
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* شاشة الإغلاق */
+        .locked-banner {
+            background: #fef2f2;
+            border: 2px dashed var(--danger);
+            border-radius: 16px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--danger);
+        }
+
+        .locked-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* شاشة النتيجة */
+        .score-modal {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid var(--success);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .score-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--success);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            font-weight: 900;
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+        }
+
+        /* لوحة الإحصائيات */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.9rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* لوحة الأدمن */
+        .admin-status-badge {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .status-open {
+            background: #dcfce7;
+            color: var(--success);
+        }
+
+        .status-closed {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .privacy-note {
+            background: #fefce8;
+            border: 1px solid #fef08a;
+            color: #854d0e;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo-area">
+            <h1>🇧🇭 منصة الصف الإلكتروني الذكي</h1>
+            <span>مناهج مملكة البحرين • السادس الابتدائي إلى الثالث الإعدادي</span>
+        </div>
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('student-view', this)">📚 بوابة الطالب والنشاط</button>
+            <button class="nav-btn" onclick="switchTab('stats-view', this)">📊 لوحة الإحصائيات</button>
+            <button class="nav-btn" onclick="switchTab('admin-view', this)">🔐 لوحة تحكم المعلم</button>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- 1. بوابة الطالب -->
+    <section id="student-view" class="view-section active">
+        
+        <!-- حالة قفل النشاط من الأدمن -->
+        <div id="activity-locked-screen" class="locked-banner" style="display: none;">
+            <h2>🔒 النشاط مغلق حالياً من قِبل المعلم</h2>
+            <p>يرجى الانتظار حتى يقوم المعلم بفتح النشاط من لوحة التحكم.</p>
+        </div>
+
+        <!-- محتوى الطالب عندما يكون النشاط مفتوحاً -->
+        <div id="activity-open-container">
+            <!-- الخطوة 1: بيانات الطالب -->
+            <div class="card">
+                <h2 class="section-title">1️⃣ بيانات الطالب والصف والفرقة</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">اسم الطالب الثلاثي:</label>
+                        <input type="text" id="studentName" placeholder="اكتب اسمك الكامل هنا...">
+                    </div>
+                    <div class="form-group">
+                        <label for="gradeSelect">الصف الدراسي:</label>
+                        <select id="gradeSelect" onchange="onGradeChange()">
+                            <option value="6">الصف السادس الابتدائي</option>
+                            <option value="7">الصف الأول الإعدادي</option>
+                            <option value="8">الصف الثاني الإعدادي</option>
+                            <option value="9">الصف الثالث الإعدادي</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sectionSelect">الفرقة (الشعبة):</label>
+                        <select id="sectionSelect">
+                            <!-- يتم تعبئتها تلقائياً حسب الصف -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 2: اختيار القسم -->
+            <div class="card">
+                <h2 class="section-title">2️⃣ اختر القسم الدراسي</h2>
+                <div class="subject-grid">
+                    <div class="subject-card math selected" id="card-math" onclick="selectSubject('math')">
+                        <div class="subject-icon">📐</div>
+                        <h3>قسم الرياضيات</h3>
+                        <p style="color: var(--muted); font-size: 0.9rem;">فصول ودروس كتاب الرياضيات - مملكة البحرين</p>
+                    </div>
+                    <div class="subject-card science" id="card-science" onclick="selectSubject('science')">
+                        <div class="subject-icon">🔬</div>
+                        <h3>قسم العلوم</h3>
+                        <p style="color: var(--muted); font-size: 0.9rem;">فصول ودروس كتاب العلوم - مملكة البحرين</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 3: اختيار الفصل والدرس -->
+            <div class="card">
+                <h2 class="section-title">3️⃣ اختر الفصل والدرس من المنهج البحريني</h2>
+                <div class="lessons-list" id="lessonsContainer">
+                    <!-- يتم عرض الدروس هنا -->
+                </div>
+            </div>
+
+            <!-- الخطوة 4: شرح الدرس والنشاط التقييمي -->
+            <div class="card" id="quizSection" style="display: none;">
+                <h2 class="section-title" id="activeLessonTitle">📖 عنوان الدرس</h2>
+                <div class="lesson-summary" id="activeLessonSummary">
+                    <!-- ملخص الدرس -->
+                </div>
+
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">✍️ النشاط التقييمي (الدرجة من 10 - كل سؤال بدرجتين):</h3>
+                <div id="questionsContainer">
+                    <!-- الأسئلة الخمسة -->
+                </div>
+
+                <button class="btn-primary" id="submitBtn" onclick="submitActivity()">
+                    🚀 إرسال الإجابات وحساب الدرجة من 10
+                </button>
+
+                <div id="resultBox" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. لوحة الإحصائيات (بدون أسماء الطلاب نهائياً) -->
+    <section id="stats-view" class="view-section">
+        <div class="card">
+            <h2 class="section-title">📊 لوحة الإحصائيات العامة للفرق</h2>
+            <div class="privacy-note">
+                🛡️ حفاظاً على خصوصية الطلبة، تعرض هذه اللوحة إحصائيات الفرق والصفوف والمواد فقط بدون عرض أي أسماء للطلاب.
+            </div>
+
+            <div class="stats-cards">
+                <div class="stat-box">
+                    <div class="stat-num" id="statTotalSubmissions">0</div>
+                    <div>إجمالي المشاركات المرسلة</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="statAvgScore">0 / 10</div>
+                    <div>متوسط الدرجات العام</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="statTopSection">-</div>
+                    <div>أكثر فرقة تفاعلاً</div>
+                </div>
+            </div>
+
+            <h3 style="margin: 1rem 0 0.5rem;">سجل المشاركات المجهول (بدون أسماء):</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رقم المشاركة</th>
+                            <th>الصف الدراسي</th>
+                            <th>الفرقة</th>
+                            <th>القسم</th>
+                            <th>الدرس</th>
+                            <th>الدرجة (من 10)</th>
+                            <th>التقدير</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTableBody">
+                        <tr>
+                            <td colspan="7" style="color: var(--muted);">لا توجد مشاركات مسجلة بعد.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. لوحة تحكم الأدمن -->
+    <section id="admin-view" class="view-section">
+        <div class="card" id="adminLoginCard">
+            <h2 class="section-title">🔐 تسجيل دخول المعلم (الأدمن)</h2>
+            <p style="margin-bottom: 1rem; color: var(--muted);">أدخل الرقم السري للتحكم في فتح وقفل النشاط وإعدادات الربط.</p>
+            <div class="form-group" style="max-width: 350px;">
+                <label for="adminPassInput">الرقم السري للأدمن:</label>
+                <input type="password" id="adminPassInput" placeholder="أدخل الرقم السري...">
+                <button class="btn-primary" style="margin-top: 0.8rem;" onclick="loginAdmin()">دخول لوحة التحكم</button>
+            </div>
+        </div>
+
+        <div class="card" id="adminControlCard" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <h2 class="section-title" style="border: none; margin: 0;">⚙️ لوحة تحكم المعلم</h2>
+                <button class="btn-secondary" onclick="logoutAdmin()">تسجيل خروج</button>
+            </div>
+            <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--border);">
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3>حالة النشاط الحالية للطلبة:</h3>
+                <div id="adminStatusBadge" class="admin-status-badge status-open">🟢 النشاط مفتوح حالياً للطلبة</div>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn-primary" style="background: var(--success); max-width: 220px;" onclick="setActivityStatus(true)">🔓 فتح النشاط</button>
+                    <button class="btn-primary" style="background: var(--danger); max-width: 220px;" onclick="setActivityStatus(false)">🔒 قفل النشاط</button>
+                </div>
+            </div>
+
+            <div style="background: #f8fafc; padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border);">
+                <h3 style="margin-bottom: 0.5rem;">📊 حالة الربط مع Google Sheets:</h3>
+                <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0.8rem;">
+                    يتم إرسال (اسم الطالب، الصف، الفرقة، المادة، الدرس، الدرجة من 10) مباشرة إلى Google Sheet عند ضبط الرابط في كود الجافاسكربت.
+                </p>
+                <button class="btn-secondary" style="background: var(--danger);" onclick="clearLocalStats()">🗑️ تصفير سجل الإحصائيات المحلي</button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // =========================================================================
+    // 1. إعدادات الأدمن والربط مع Google Sheets (تُعدّل من هنا)
+    // =========================================================================
+    const ADMIN_SECRET_PIN = "2026"; // الرقم السري للأدمن
+    const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; // ضع رابط Google Apps Script هنا
+
+    // =========================================================================
+    // 2. تقسيم الفرق حسب الطلب بدقة
+    // =========================================================================
+    const GRADE_CONFIG = {
+        "6": {
+            name: "الصف السادس الابتدائي",
+            sections: ["سادس 1", "سادس 2", "سادس 3"]
+        },
+        "7": {
+            name: "الصف الأول الإعدادي",
+            sections: ["أول 1", "أول 2", "أول 3", "أول 4"]
+        },
+        "8": {
+            name: "الصف الثاني الإعدادي",
+            sections: ["ثاني 2", "ثاني 3", "ثاني 4"]
+        },
+        "9": {
+            name: "الصف الثالث الإعدادي",
+            sections: ["ثالث 1", "ثالث 2", "ثالث 3", "ثالث 4", "ثالث 5"]
+        }
+    };
+
+    // =========================================================================
+    // 3. محتوى مناهج مملكة البحرين (الرياضيات والعلوم)
+    // =========================================================================
+    const CURRICULUM_DATA = {
+        "6": {
+            math: [
+                {
+                    id: "6m1",
+                    chapter: "الفصل الأول: الجبر: الأنماط العددية والدوال",
+                    title: "الدرس 1: العوامل الأولية والقوى والأسس",
+                    summary: "العدد الأولي هو عدد أكبر من 1 وله عاملان فقط هما الواحد والعدد نفسه (مثل: 2، 3، 5، 7). ويمكن كتابة حاصل ضرب العوامل المتشابهة باستعمال الأسس مثل $2^3 = 2 \\times 2 \\times 2 = 8$.",
+                    questions: [
+                        { q: "أي الأعداد التالية يُعد عدداً أولياً؟", options: ["9", "11", "15", "21"], answer: 1 },
+                        { q: "ما قيمة القوة: 3 أس 2 (3²)؟", options: ["6", "9", "5", "8"], answer: 1 },
+                        { q: "التحليل الصحيح للعدد 12 إلى عوامله الأولية هو:", options: ["2 × 6", "3 × 4", "2 × 2 × 3", "1 × 12"], answer: 2 },
+                        { q: "العدد الذي ليس أولياً وليس غير أولي هو:", options: ["0", "1", "2", "3"], answer: 1 },
+                        { q: "قيمة العبارة: 2 × 5 + 3 تساوي:", options: ["16", "13", "10", "30"], answer: 1 }
+                    ]
+                },
+                {
+                    id: "6m2",
+                    chapter: "الفصل الرابع: الكسور الاعتيادية والكسور العشرية",
+                    title: "الدرس 2: القاسم المشترك الأكبر (ق.م.أ)",
+                    summary: "القاسم المشترك الأكبر لعددين أو أكثر هو أكبر عدد يقسم كلاً منهما دون باقٍ، ويُستخدم لتبسيط الكسور الاعتيادية إلى أبسط صورة.",
+                    questions: [
+                        { q: "ما القاسم المشترك الأكبر (ق.م.أ) للعددين 8 و 12؟", options: ["2", "4", "8", "24"], answer: 1 },
+                        { q: "تبسيط الكسر 6/9 إلى أبسط صورة هو:", options: ["3/4", "2/3", "1/3", "2/9"], answer: 1 },
+                        { q: "قواسم العدد 10 هي:", options: ["1، 2، 5، 10", "1، 5، 10", "2، 5", "1، 10"], answer: 0 },
+                        { q: "المضاعف المشترك الأصغر (م.م.أ) للعددين 3 و 4 هو:", options: ["6", "7", "12", "24"], answer: 2 },
+                        { q: "أي كسر مما يلي في أبسط صورة؟", options: ["4/8", "3/6", "5/7", "6/10"], answer: 2 }
+                    ]
+                }
+            ],
+            science: [
+                {
+                    id: "6s1",
+                    chapter: "الوحدة الأولى: تنوع الحياة",
+                    title: "الدرس 1: نظرية الخلية والخلية النباتية والحيوانية",
+                    summary: "الخلية هي الوحدة الأساسية للتركيب والوظيفة في المخلوقات الحية. تتميز الخلية النباتية بوجود الجدار الخلوي والبلاستيدات الخضراء للقيام بالبناء الضوئي، بينما تفتقر الخلية الحيوانية لهما.",
+                    questions: [
+                        { q: "ما العضية المسؤولة عن إنتاج الطاقة في الخلية؟", options: ["الميتوكندريا", "النواة", "الفجوة", "الغشاء البلازمي"], answer: 0 },
+                        { q: "أي جزء يوجد في الخلية النباتية ولا يوجد في الخلية الحيوانية؟", options: ["النواة", "السيتوبلازم", "البلاستيدات الخضراء", "الغشاء البلازمي"], answer: 2 },
+                        { q: "مركز التحكم الذي ينظم جميع أنشطة الخلية هو:", options: ["الجدار الخلوي", "النواة", "الميتوكندريا", "الرايبوسومات"], answer: 1 },
+                        { q: "الجهاز الذي يُستخدم لرؤية الخلايا الدقيقة هو:", options: ["التلسكوب", "المجهر (الميكروسكوب)", "البارومتر", "الترمومتر"], answer: 1 },
+                        { q: "تحدث عملية البناء الضوئي في:", options: ["الجذور", "البلاستيدات الخضراء", "الخلية الحيوانية", "النواة"], answer: 1 }
+                    ]
+                }
+            ]
+        },
+        "7": {
+            math: [
+                {
+                    id: "7m1",
+                    chapter: "الفصل الثاني: الأعداد الصحيحة",
+                    title: "الدرس 1: جمع وطرح الأعداد الصحيحة",
+                    summary: "عند جمع عددين صحيحين لهما الإشارة نفسها نجمع القيمتين المطلقتين ونضع إشارتهما. وعند اختلاف الإشارتين نطرح القيمتين المطلقتين ونأخذ إشارة العدد الأكبر.",
+                    questions: [
+                        { q: "ما ناتج: (-7) + (-5)؟", options: ["-2", "+12", "-12", "+2"], answer: 2 },
+                        { q: "ما ناتج: (-9) + 4؟", options: ["-5", "+5", "-13", "+13"], answer: 0 },
+                        { q: "قيمة |-15| (القيمة المطلقة للعدد -15) هي:", options: ["-15", "15", "0", "1"], answer: 1 },
+                        { q: "ما ناتج: 6 - (-4)؟", options: ["2", "-2", "10", "-10"], answer: 2 },
+                        { q: "ما ناتج: (-3) × (-4)؟", options: ["-12", "+12", "-7", "+7"], answer: 1 }
+                    ]
+                }
+            ],
+            science: [
+                {
+                    id: "7s1",
+                    chapter: "الوحدة الأولى: طبيعة العلم وتغيرات الأرض",
+                    title: "الدرس 1: أسلوب العلم والطريقة العلمية",
+                    summary: "تبدأ الطريقة العلمية بالملاحظة وطرح الأسئلة، ثم تكوين الفرضية (تفسير قابل للاختبار)، ثم إجراء التجربة وتحليل البيانات للوصول إلى الاستنتاج.",
+                    questions: [
+                        { q: "تُعرف الفرضية في البحث العلمي بأنها:", options: ["حقيقة مثبتة", "توقع أو تفسير قابل للاختبار", "أداة قياس", "نتيجة نهائية"], answer: 1 },
+                        { q: "العامل الذي يقوم الباحث بتغييره في التجربة يُسمى:", options: ["المتغير التابع", "المتغير المستقل", "الثابت", "العينة الضابطة"], answer: 1 },
+                        { q: "الخطوة الأولى في الطريقة العلمية غالباً هي:", options: ["الاستنتاج", "الملاحظة وطرح السؤال", "نشر النتائج", "رسم البيانات"], answer: 1 },
+                        { q: "العامل الذي لا يتغير أثناء التجربة يُسمى:", options: ["الثابت", "المتغير المستقل", "المتغير التابع", "الفرضية"], answer: 0 },
+                        { q: "تُستخدم النماذج العلمية لـ:", options: ["تصعيب الفهم", "محاكاة الأشياء الكبيرة جداً أو الصغيرة جداً", "إلغاء التجارب", "قياس الكتلة فقط"], answer: 1 }
+                    ]
+                }
+            ]
+        },
+        "8": {
+            math: [
+                {
+                    id: "8m1",
+                    chapter: "الفصل الأول: الجبر: الأعداد النسبية",
+                    title: "الدرس 1: ضرب وقسمة الأعداد النسبية",
+                    summary: "العدد النسبي هو كل عدد يمكن كتابته على صورة كسر أ/ب حيث ب لا يساوي صفراً. عند ضرب كسرين نضرب البسط في البسط والمقام في المقام، وعند القسمة نضرب في النظير الضربي (المقلوب).",
+                    questions: [
+                        { q: "ما النظير الضربي للعدد النسبي 3/5؟", options: ["-3/5", "5/3", "-5/3", "1"], answer: 1 },
+                        { q: "ناتج ضرب: (2/3) × (3/4) في أبسط صورة هو:", options: ["6/12", "1/2", "5/7", "2/4"], answer: 1 },
+                        { q: "ناتج قسمة: (1/2) ÷ (1/4) يساوي:", options: ["1/8", "2", "1/2", "4"], answer: 1 },
+                        { q: "يكتب الكسر العشري 0.25 على صورة كسر اعتيادي في أبسط صورة:", options: ["25/100", "1/4", "1/5", "2/5"], answer: 1 },
+                        { q: "أي الأعداد التالية يُعد عدداً نسبياً؟", options: ["3/4", "5/0", "جذر 2", "باي (π)"], answer: 0 }
+                    ]
+                }
+            ],
+            science: [
+                {
+                    id: "8s1",
+                    chapter: "الوحدة الأولى: دراسة المادة",
+                    title: "الدرس 1: حالات المادة وتغيراتها",
+                    summary: "توجد المادة في أربع حالات رئيسية: الصلبة، السائلة، الغازية، والبلازما. تعتمد حالة المادة على حركة الجسيمات وقوى التجاذب بينها.",
+                    questions: [
+                        { q: "تحول المادة من الحالة الصلبة إلى الحالة الغازية مباشرة دون المرور بالسائلة يُسمى:", options: ["الانصهار", "التبخر", "التسامي", "التكثف"], answer: 2 },
+                        { q: "أي حالات المادة لها شكل محدد وحجم محدد؟", options: ["الصلبة", "السائلة", "الغازية", "البلازما"], answer: 0 },
+                        { q: "تحول بخار الماء إلى قطرات ماء سائل على سطح بارد يُسمى:", options: ["التجمد", "التكثف", "الانصهار", "الغليان"], answer: 1 },
+                        { q: "تزداد طاقة حركة جسيمات المادة عند:", options: ["تبريدها", "تسخينها", "تجميدها", "تقليل ضغطها"], answer: 1 },
+                        { q: "أكثر حالات المادة انتشاراً في الكون (مثل النجوم) هي:", options: ["الصلبة", "السائلة", "البلازما", "الغازية"], answer: 2 }
+                    ]
+                }
+            ]
+        },
+        "9": {
+            math: [
+                {
+                    id: "9m1",
+                    chapter: "الفصل الأول: المعادلات الخطية",
+                    title: "الدرس 1: حل المعادلات ذات الخطوات المتعددة",
+                    summary: "لحل معادلة خطية تحتوي على متغير في طرفيها، نجمع الحدود المتشابهة في أحد الطرفين والأعداد الثابتة في الطرف الآخر باستعمال العمليات العكسية.",
+                    questions: [
+                        { q: "حل المعادلة: 3س + 5 = 20 هو:", options: ["س = 3", "س = 5", "س = 15", "س = 25"], answer: 1 },
+                        { q: "حل المعادلة: 2س - 4 = س + 6 هو:", options: ["س = 2", "س = 10", "س = -10", "س = 5"], answer: 1 },
+                        { q: "ميل المستقيم المار بالنقطتين (1، 2) و (3، 6) يساوي:", options: ["1", "2", "3", "4"], answer: 1 },
+                        { q: "إذا كان 4(س - 1) = 12، فإن قيمة س تساوي:", options: ["3", "4", "2", "5"], answer: 1 },
+                        { q: "المعادلة التي تمثل: (ثلاثة أمثال عدد مطروحاً منه 2 يساوي 10) هي:", options: ["3س + 2 = 10", "3س - 2 = 10", "2س - 3 = 10", "س - 6 = 10"], answer: 1 }
+                    ]
+                }
+            ],
+            science: [
+                {
+                    id: "9s1",
+                    chapter: "الوحدة الأولى: طبيعة المادة والجدول الدوري",
+                    title: "الدرس 1: تركيب الذرة والجدول الدوري الحديث",
+                    summary: "تتكون الذرة من نواة موجبة الشحنة تحتوي على بروتونات موجبة ونيوترونات متعادلة، وتدور حولها إلكترونات سالبة الشحنة. رُتّب الجدول الدوري الحديث تصاعدياً وفق العدد الذري.",
+                    questions: [
+                        { q: "الجسيمات سالبة الشحنة التي تدور حول نواة الذرة هي:", options: ["البروتونات", "النيوترونات", "الإلكترونات", "الأيونات"], answer: 2 },
+                        { q: "العدد الذري للعنصر يساوي عدد:", options: ["النيوترونات", "البروتونات في النواة", "مستويات الطاقة", "الكتلة الذرية"], answer: 1 },
+                        { q: "تُسمى الأعمدة الرأسية في الجدول الدوري بـ:", options: ["الدورات", "المجموعات", "الفلزات", "النظائر"], answer: 1 },
+                        { q: "عناصر المجموعة 18 في الجدول الدوري تُسمى:", options: ["الفلزات القلوية", "الهالوجينات", "الغازات النبيلة", "أشباه الفلزات"], answer: 2 },
+                        { q: "تتركز معظم كتلة الذرة في:", options: ["السحابة الإلكترونية", "النواة", "مستوى الطاقة الأول", "الفراغ الذري"], answer: 1 }
+                    ]
+                }
+            ]
+        }
+    };
+
+    // =========================================================================
+    // 4. إدارة الحالة والتفاعل
+    // =========================================================================
+    let currentSubject = "math";
+    let selectedLesson = null;
+    let isActivityOpen = JSON.parse(localStorage.getItem("bh_activity_open") ?? "true");
+    let anonymousStats = JSON.parse(localStorage.getItem("bh_anonymous_stats") ?? "[]");
+
+    // تهيئة الصفحة عند التحميل
+    window.onload = function() {
+        onGradeChange();
+        updateActivityLockUI();
+        renderStats();
+    };
+
+    // التبديل بين التبويبات
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+
+        if (tabId === 'stats-view') renderStats();
+    }
+
+    // تحديث الفرق والدروس عند تغيير الصف
+    function onGradeChange() {
+        const grade = document.getElementById("gradeSelect").value;
+        const sectionSelect = document.getElementById("sectionSelect");
+        sectionSelect.innerHTML = "";
+
+        GRADE_CONFIG[grade].sections.forEach(sec => {
+            const opt = document.createElement("option");
+            opt.value = sec;
+            opt.textContent = sec;
+            sectionSelect.appendChild(opt);
+        });
+
+        renderLessonsList();
+    }
+
+    // اختيار المادة (رياضيات / علوم)
+    function selectSubject(subj) {
+        currentSubject = subj;
+        document.getElementById("card-math").classList.toggle("selected", subj === "math");
+        document.getElementById("card-science").classList.toggle("selected", subj === "science");
+        renderLessonsList();
+    }
+
+    // عرض قائمة الدروس
+    function renderLessonsList() {
+        const grade = document.getElementById("gradeSelect").value;
+        const container = document.getElementById("lessonsContainer");
+        const lessons = CURRICULUM_DATA[grade][currentSubject] || [];
+        
+        container.innerHTML = "";
+        document.getElementById("quizSection").style.display = "none";
+        selectedLesson = null;
+
+        lessons.forEach(lesson => {
+            const div = document.createElement("div");
+            div.className = "lesson-item";
+            div.innerHTML = `
+                <span class="lesson-badge">${lesson.chapter}</span>
+                <h4 style="font-size: 1.1rem; color: var(--secondary);">${lesson.title}</h4>
+                <p style="font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem;">اضغط لفتح شرح الدرس والنشاط التقييمي (10 درجات)</p>
+            `;
+            div.onclick = () => openLesson(lesson, div);
+            container.appendChild(div);
+        });
+    }
+
+    // فتح الدرس وعرض الأسئلة
+    function openLesson(lesson, cardElement) {
+        document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active-lesson'));
+        cardElement.classList.add('active-lesson');
+        selectedLesson = lesson;
+
+        document.getElementById("quizSection").style.display = "block";
+        document.getElementById("resultBox").style.display = "none";
+        document.getElementById("submitBtn").disabled = false;
+        document.getElementById("submitBtn").style.opacity = "1";
+
+        document.getElementById("activeLessonTitle").textContent = `📖 ${lesson.title}`;
+        document.getElementById("activeLessonSummary").innerHTML = `<strong>ملخص الدرس:</strong> ${lesson.summary}`;
+
+        const qContainer = document.getElementById("questionsContainer");
+        qContainer.innerHTML = "";
+
+        lesson.questions.forEach((item, qIndex) => {
+            const qDiv = document.createElement("div");
+            qDiv.className = "question-box";
+            
+            let optionsHTML = "";
+            item.options.forEach((opt, optIndex) => {
+                optionsHTML += `
+                    <label class="option-label">
+                        <input type="radio" name="q_${qIndex}" value="${optIndex}">
+                        <span>${opt}</span>
+                    </label>
+                `;
+            });
+
+            qDiv.innerHTML = `
+                <div class="question-title">س${qIndex + 1}: ${item.q}</div>
+                <div class="options-grid">${optionsHTML}</div>
+            `;
+            qContainer.appendChild(qDiv);
+        });
+
+        document.getElementById("quizSection").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // =========================================================================
+    // 5. تصحيح الإجابات وحساب الدرجة من 10 وإرسالها إلى Google Sheet
+    // =========================================================================
+    async function submitActivity() {
+        const studentName = document.getElementById("studentName").value.trim();
+        if (!studentName) {
+            alert("⚠️ يرجى كتابة اسم الطالب أولاً قبل إرسال النشاط.");
+            document.getElementById("studentName").focus();
+            return;
+        }
+
+        if (!selectedLesson) return;
+
+        let score = 0;
+        const totalQuestions = selectedLesson.questions.length;
+
+        for (let i = 0; i < totalQuestions; i++) {
+            const chosen = document.querySelector(`input[name="q_${i}"]:checked`);
+            if (!chosen) {
+                alert(`⚠️ يرجى الإجابة على السؤال رقم (${i + 1}) قبل الإرسال.`);
+                return;
+            }
+            if (parseInt(chosen.value) === selectedLesson.questions[i].answer) {
+                score += 2; // 5 أسئلة × 2 = 10 درجات
+            }
+        }
+
+        const gradeKey = document.getElementById("gradeSelect").value;
+        const gradeName = GRADE_CONFIG[gradeKey].name;
+        const sectionName = document.getElementById("sectionSelect").value;
+        const subjectName = currentSubject === "math" ? "الرياضيات" : "العلوم";
+
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "⏳ جاري الإرسال إلى سجل المعلم...";
+
+        // البيانات المرسلة إلى Google Sheets (تشمل اسم الطالب للمعلم فقط)
+        const sheetPayload = {
+            timestamp: new Date().toLocaleString("ar-BH"),
+            studentName: studentName,
+            grade: gradeName,
+            section: sectionName,
+            subject: subjectName,
+            lesson: selectedLesson.title,
+            score: score
+        };
+
+        // الإرسال الفعلي إلى Google Sheets
+        if (GOOGLE_SHEET_WEB_APP_URL && !GOOGLE_SHEET_WEB_APP_URL.includes("YOUR_SCRIPT_ID")) {
+            try {
+                await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(sheetPayload)
+                });
+            } catch (err) {
+                console.error("خطأ في الإرسال إلى Google Sheet:", err);
+            }
+        }
+
+        // حفظ نسخة مجهولة تماماً (بدون اسم الطالب) للوحة الإحصائيات
+        anonymousStats.unshift({
+            grade: gradeName,
+            section: sectionName,
+            subject: subjectName,
+            lesson: selectedLesson.title,
+            score: score
+        });
+        localStorage.setItem("bh_anonymous_stats", JSON.stringify(anonymousStats));
+
+        // عرض النتيجة للطالب
+        let badgeText = score >= 8 ? "ممتاز 🌟" : (score >= 6 ? "جيد جداً 👍" : "يحتاج مراجعة 📚");
+        const resultBox = document.getElementById("resultBox");
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+            <div class="score-modal">
+                <div class="score-circle">${score}/10</div>
+                <h3>أحسنت يا ${studentName}! (${badgeText})</h3>
+                <p style="margin-top: 0.5rem; color: var(--secondary);">
+                    تم تسجيل درجتك <strong>${score} من 10</strong> بنجاح لفرقة <strong>${sectionName}</strong> في مادة <strong>${subjectName}</strong>.
+                </p>
+            </div>
+        `;
+
+        submitBtn.textContent = "✅ تم إرسال النشاط بنجاح";
+    }
+
+    // =========================================================================
+    // 6. لوحة الإحصائيات (بدون أي أسماء طلاب)
+    // =========================================================================
+    function renderStats() {
+        const total = anonymousStats.length;
+        document.getElementById("statTotalSubmissions").textContent = total;
+
+        if (total === 0) {
+            document.getElementById("statAvgScore").textContent = "0 / 10";
+            document.getElementById("statTopSection").textContent = "-";
+            document.getElementById("statsTableBody").innerHTML = `<tr><td colspan="7" style="color: var(--muted);">لا توجد مشاركات مسجلة بعد.</td></tr>`;
+            return;
+        }
+
+        const sum = anonymousStats.reduce((acc, item) => acc + item.score, 0);
+        const avg = (sum / total).toFixed(1);
+        document.getElementById("statAvgScore").textContent = `${avg} / 10`;
+
+        // حساب أكثر فرقة تفاعلاً
+        const sectionCounts = {};
+        anonymousStats.forEach(s => {
+            sectionCounts[s.section] = (sectionCounts[s.section] || 0) + 1;
+        });
+        const topSection = Object.keys(sectionCounts).reduce((a, b) => sectionCounts[a] > sectionCounts[b] ? a : b);
+        document.getElementById("statTopSection").textContent = topSection;
+
+        // بناء الجدول بدون عمود الاسم نهائياً
+        const tbody = document.getElementById("statsTableBody");
+        tbody.innerHTML = "";
+        anonymousStats.forEach((item, index) => {
+            const rating = item.score >= 8 ? "ممتاز" : (item.score >= 6 ? "جيد" : "مقبول");
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>#${total - index}</td>
+                <td>${item.grade}</td>
+                <td><strong>${item.section}</strong></td>
+                <td>${item.subject}</td>
+                <td>${item.lesson}</td>
+                <td><strong style="color: var(--primary);">${item.score} / 10</strong></td>
+                <td>${rating}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // =========================================================================
+    // 7. لوحة تحكم الأدمن (الرقم السري لفتح وقفل النشاط)
+    // =========================================================================
+    function loginAdmin() {
+        const enteredPin = document.getElementById("adminPassInput").value;
+        if (enteredPin === ADMIN_SECRET_PIN) {
+            document.getElementById("adminLoginCard").style.display = "none";
+            document.getElementById("adminControlCard").style.display = "block";
+            document.getElementById("adminPassInput").value = "";
+        } else {
+            alert("❌ الرقم السري غير صحيح!");
+        }
+    }
+
+    function logoutAdmin() {
+        document.getElementById("adminLoginCard").style.display = "block";
+        document.getElementById("adminControlCard").style.display = "none";
+    }
+
+    function setActivityStatus(openState) {
+        isActivityOpen = openState;
+        localStorage.setItem("bh_activity_open", JSON.stringify(openState));
+        updateActivityLockUI();
+        alert(openState ? "✅ تم فتح النشاط للطلبة بنجاح." : "🔒 تم قفل النشاط عن الطلبة.");
+    }
+
+    function updateActivityLockUI() {
+        const lockedScreen = document.getElementById("activity-locked-screen");
+        const openContainer = document.getElementById("activity-open-container");
+        const badge = document.getElementById("adminStatusBadge");
+
+        if (isActivityOpen) {
+            lockedScreen.style.display = "none";
+            openContainer.style.display = "block";
+            badge.className = "admin-status-badge status-open";
+            badge.textContent = "🟢 النشاط مفتوح حالياً للطلبة";
+        } else {
+            lockedScreen.style.display = "block";
+            openContainer.style.display = "none";
+            badge.className = "admin-status-badge status-closed";
+            badge.textContent = "🔴 النشاط مغلق حالياً عن الطلبة";
+        }
+    }
+
+    function clearLocalStats() {
+        if (confirm("هل أنت متأكد من تصفير الإحصائيات المعروضة في الصفحة؟")) {
+            anonymousStats = [];
+            localStorage.removeItem("bh_anonymous_stats");
+            renderStats();
+            alert("تم تصفير سجل الإحصائيات.");
+        }
+    }
+</script>
+
+</body>
+</html>
