@@ -4,250 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الصف الإلكتروني - مدرسة البلاد القديم الابتدائية الإعدادية للبنين</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- خطوط عربية أنيقة -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- مكتبة الرسوم البيانية الدائرية -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #0284c7;
+            --primary: #0f4c81;
+            --primary-dark: #093154;
+            --secondary: #10b981;
             --accent: #f59e0b;
+            --danger: #ef4444;
             --bg: #f1f5f9;
-            --card: #ffffff;
+            --card-bg: #ffffff;
             --text: #1e293b;
+            --border: #cbd5e1;
         }
-        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { margin: 0; background-color: var(--bg); color: var(--text); }
-        
-        /* الهيدر */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* الترويسة */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        header h1 { margin: 0; font-size: 1.6rem; }
-        header p { margin: 5px 0 0; opacity: 0.9; font-size: 1rem; }
 
-        /* شريط التنقل */
-        nav {
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            background: #fff;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             flex-wrap: wrap;
-        }
-        nav button {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 8px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        nav button.active, nav button:hover {
-            background: var(--primary);
-            color: white;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
         }
 
-        /* الحاوية الرئيسية */
-        .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
-        .section { display: none; animation: fadeIn 0.4s; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .school-title h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
 
-        /* البطاقات والنماذج */
-        .card {
-            background: var(--card);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            margin-bottom: 20px;
+        .school-title p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        .btn-submit {
-            background: var(--secondary);
-            color: white;
+
+        .admin-btn {
+            background-color: var(--accent);
+            color: #1e293b;
             border: none;
-            padding: 12px 25px;
+            padding: 0.5rem 1.2rem;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            width: 100%;
-        }
-        .btn-submit:hover { background: var(--primary); }
-
-        /* شبكة الأقسام */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        
-        .subject-header {
-            padding: 15px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        .science-bg { background: #059669; }
-        .math-bg { background: #d97706; }
-
-        .lesson-item {
-            border-right: 4px solid var(--secondary);
-            background: #f8fafc;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-        }
-        .badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* الإحصائيات */
-        .stat-box {
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .stat-num { font-size: 2.2rem; font-weight: bold; color: var(--primary); }
-
-        /* الجداول */
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; border-bottom: 1px solid #e2e8f0; text-align: right; }
-        th { background-color: var(--primary); color: white; }
-        .btn-danger { background: #dc2626; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>مملكة البحرين - وزارة التربية والتعليم</h1>
-    <p>منصة الصف الإلكتروني | مدرسة البلاد القديم الابتدائية الإعدادية للبنين</p>
-</header>
-
-<nav>
-    <button class="nav-btn active" onclick="showSection('student-portal', this)">بوابة الطالب</button>
-    <button class="nav-btn" onclick="showSection('subjects-portal', this)">الأقسام الدراسية (العلوم والرياضيات)</button>
-    <button class="nav-btn" onclick="showSection('stats-portal', this)">الإحصائيات</button>
-    <button class="nav-btn" onclick="showSection('admin-portal', this)">لوحة الأدمن</button>
-</nav>
-
-<div class="container">
-
-    <!-- 1. قسم تسجيل الطالب -->
-    <div id="student-portal" class="section active">
-        <div class="card" style="max-width: 600px; margin: auto;">
-            <h2 style="color: var(--primary); margin-top: 0;">تسجيل دخول وحضور الطالب</h2>
-            <form id="studentForm">
-                <div class="form-group">
-                    <label>اسم الطالب الثلاثي:</label>
-                    <input type="text" id="studentName" required placeholder="أدخل اسم الطالب هنا...">
-                </div>
-                <div class="form-group">
-                    <label>الصف الدراسي:</label>
-                    <select id="studentGrade" required>
-                        <option value="">-- اختر الصف --</option>
-                        <option value="السادس الابتدائي">السادس الابتدائي</option>
-                        <option value="الأول الإعدادي">الأول الإعدادي</option>
-                        <option value="الثاني الإعدادي">الثاني الإعدادي</option>
-                        <option value="الثالث الإعدادي">الثالث الإعدادي</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>القسم المراد تصفحه:</label>
-                    <select id="studentSubject" required>
-                        <option value="العلوم">قسم العلوم</option>
-                        <option value="الرياضيات">قسم الرياضيات</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>التاريخ:</label>
-                    <input type="date" id="attendanceDate" required>
-                </div>
-                <button type="submit" class="btn-submit">تسجيل الدخول والانتقال للدروس</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 2. قسم المواد الدراسية -->
-    <div id="subjects-portal" class="section">
-        <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <h2 style="margin: 0; color: var(--primary);">المحتوى التعليمي والأنشطة</h2>
-                <div>
-                    <label style="display: inline; margin-left: 8px;">تصفية حسب الصف:</label>
-                    <select id="gradeFilter" onchange="renderLessons()" style="width: auto; display: inline-block;">
-                        <option value="الكل">جميع الصفوف (سادس - ثالث إعدادي)</option>
-                        <option value="السادس الابتدائي">السادس الابتدائي</option>
-                        <option value="الأول الإعدادي">الأول الإعدادي</option>
-                        <option value="الثاني الإعدادي">الثاني الإعدادي</option>
-                        <option value="الثالث الإعدادي">الثالث الإعدادي</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid-2">
-            <!-- قسم العلوم -->
-            <div class="card">
-                <div class="subject-header science-bg">🔬 قسم العلوم</div>
-                <div id="scienceLessons"></div>
-            </div>
-
-            <!-- قسم الرياضيات -->
-            <div class="card">
-                <div class="subject-header math-bg">📐 قسم الرياضيات</div>
-                <div id="mathLessons"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. قسم الإحصائيات -->
-    <div id="stats-portal" class="section">
-        <div class="card">
-            <h2 style="color: var(--primary); margin-top: 0;">📊 إحصائيات المنصة والحضور</h2>
-            <div class="grid-4" id="statsCards">
-                <!-- يتم تعبئتها عبر الجافاسكربت -->
-            </div>
-        </div>
-        <div class="card">
-            <h3>توزيع الطلاب حسب الصف الدراسي</h3>
-            <div id="gradeBreakdown"></div>
-        </div>
-    </div>
-
-    <!-- 4. لوحة الأدمن -->
-    <div id="admin-portal" class="section">
-        <!-- شاشة قفل الأدمن -->
-        <div id="adminLoginBox" class="card" style="max-width: 400px; margin: auto; text-align: center;">
-            <h3>تسجيل دخول المشرف / المعلم</h3>
-            <p style="font-size: 0.9rem; color: #64748b;">كلمة المرور الافتراضية: 1234</p>
-            <input type="password" id="adminPass" placeholder="أدخل كلمة المرور" style="margin-bottom: 10px;">
-            <button onclick="loginAdmin()" class="btn-submit">دخول</button>
-        </div>
-
-        <!-- محتوى لوحة الأدمن -->
-        <div id="adminDashboard" style="display: none;">
-            <div class="card">
-                <h2 style="color: var(--primary); margin-top: 0;">➕ إضافة درس أو نشاط جديد</h2>
-                <form id="lessonForm">
+        .admin-btn:hover {
+            background-color: #d977
