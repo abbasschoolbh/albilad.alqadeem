@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123b63"><title>منصة التعلم الدراسي</title>
+<style>
+:root{--navy:#123b63;--blue:#1769aa;--cyan:#22b8cf;--bg:#f3f7fb;--ink:#172b4d;--muted:#64748b;--white:#fff;--line:#e3eaf2;--green:#15966b;--orange:#ef9b25}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#102e50,#1769aa 65%,#22a6b9);color:white;padding:28px max(18px,calc((100% - 1150px)/2));position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:260px;height:260px;border:35px solid #ffffff15;border-radius:50%;left:-65px;top:-125px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;position:relative;z-index:1}.brand{display:flex;align-items:center;gap:12px}.logo{width:52px;height:52px;border-radius:17px;background:#ffffff20;display:grid;place-items:center;font-size:27px}
+h1{font-size:clamp(22px,4vw,34px);margin:0 0 8px}.subtitle{margin:0;color:#e3f5ff}.header-actions{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{border:0;border-radius:12px;padding:11px 16px;font:inherit;cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+button:hover,.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}.light{background:#fff;color:var(--navy)}.ghost{background:#ffffff20;color:white;border:1px solid #ffffff55}
+main{max-width:1150px;margin:25px auto;padding:0 18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px}.stat,.panel,.subject-card,.grade-card,.lesson,.activity{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 20px #193b5b08}
+.stat{padding:17px}.stat strong{display:block;font-size:25px;color:var(--blue);margin-top:7px}.stat span{color:var(--muted);font-size:13px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:24px 0 13px}.section-title h2{margin:0;font-size:22px}.subjects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.subject-card{padding:22px;position:relative;overflow:hidden;cursor:pointer;transition:.25s}.subject-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px #193b5b14}.subject-card.science{border-top:5px solid #19a47b}.subject-card.math{border-top:5px solid #3986d8}.subject-icon{font-size:38px}.subject-card h3{margin:10px 0 6px}.subject-card p{color:var(--muted);margin:0 0 15px}.pill{display:inline-block;background:#edf6ff;color:#1769aa;border-radius:30px;padding:6px 10px;font-size:12px;margin:3px}
+.panel{padding:20px;margin:16px 0}.hidden{display:none!important}.back{background:#eaf2f9;color:var(--navy)}.grade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grade-card{padding:18px;cursor:pointer;text-align:center;border:2px solid transparent}.grade-card:hover,.grade-card.active{border-color:var(--blue);background:#f3f9ff}.grade-card b{display:block;font-size:19px;margin-bottom:6px}.muted{color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tab{background:#edf2f7;color:#334155}.tab.active{background:var(--navy);color:white}
+.chapter{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;background:white}.chapter-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:bold}.chapter-body{padding:0 15px 15px}.lesson{padding:13px;margin:9px 0;box-shadow:none;display:flex;justify-content:space-between;align-items:center;gap:10px}.lesson h4{margin:0 0 5px}.lesson small{color:var(--muted)}.primary{background:var(--blue);color:white}.green{background:#e6f7f0;color:#087a55}.orange{background:#fff4df;color:#9a5b00}.lesson-actions{display:flex;gap:6px;flex-wrap:wrap}.lesson-actions button{padding:8px 10px;font-size:13px}
+.activity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.activity{padding:16px;box-shadow:none}.activity h4{margin:0 0 8px}.activity p{color:var(--muted);font-size:14px}.activity button{margin-top:8px}
+form{display:grid;gap:12px}label{font-weight:bold;font-size:14px}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:white}textarea{min-height:90px}.question{padding:14px;border:1px solid var(--line);border-radius:12px;margin:10px 0}.question label{display:block;font-weight:normal;margin:9px 0}.result{padding:14px;border-radius:12px;background:#e8f7f0;color:#086044;margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:30px 15px;font-size:13px}.admin-fab{position:fixed;bottom:14px;left:14px;width:42px;height:42px;border-radius:50%;opacity:.08;background:#123b63;color:white;font-size:18px}.admin-fab:hover{opacity:1}
+.modal{position:fixed;inset:0;background:#0b1e33a8;display:grid;place-items:center;padding:15px;z-index:10}.modal-box{background:white;border-radius:18px;padding:22px;width:min(680px,100%);max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{background:#eef2f7;color:#334155;padding:7px 11px}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-row{padding:12px;background:#f6f9fc;border-radius:12px;margin:8px 0}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}.subjects,.activity-grid,.admin-grid{grid-template-columns:1fr}.grade-grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.lesson{align-items:flex-start;flex-direction:column}.lesson-actions{width:100%}.lesson-actions button{flex:1}}
+@media(prefers-reduced-motion:no-preference){.subject-card,.stat,.panel{animation:rise .55s both}@keyframes rise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}}
+</style></head>
+<body>
+<header><div class="top"><div class="brand"><div class="logo">🎓</div><div><h1>منصة التعلم الدراسي</h1><p class="subtitle">نتعلم اليوم لنبدع غدًا • المرحلة الإعدادية – مملكة البحرين</p></div></div><div class="header-actions"><button class="ghost" onclick="showHome()">الرئيسية</button><button class="light" onclick="openSheet()">📊 فتح سجل Google Sheets</button></div></div></header>
+<main>
+<section class="stats">
+ <div class="stat"><span>المواد الدراسية</span><strong>2</strong></div>
+ <div class="stat"><span>الصفوف</span><strong>3</strong></div>
+ <div class="stat"><span>الأنشطة المنجزة على هذا الجهاز</span><strong id="doneCount">0</strong></div>
+ <div class="stat"><span>متوسط الدرجات</span><strong id="avgScore">—</strong></div>
+</section>
+<section id="home">
+ <div class="section-title"><h2>اختر المادة الدراسية</h2><span class="muted">مادتان • ثلاثة صفوف</span></div>
+ <div class="subjects">
+  <article class="subject-card science" onclick="chooseSubject('science')"><div class="subject-icon">🧪</div><h3>العلوم</h3><p>استكشف الكائنات الحية والطاقة والمادة والبيئة من خلال الدروس والأنشطة.</p><span class="pill">الأول الإعدادي</span><span class="pill">الثاني الإعدادي</span><span class="pill">الثالث الإعدادي</span></article>
+  <article class="subject-card math" onclick="chooseSubject('math')"><div class="subject-icon">📐</div><h3>الرياضيات</h3><p>تدرّب على الأعداد والجبر والهندسة والقياس وحل المسائل.</p><span class="pill">الأول الإعدادي</span><span class="pill">الثاني الإعدادي</span><span class="pill">الثالث الإعدادي</span></article>
+ </div>
+ <div class="panel"><b>تنبيه حول المحتوى الدراسي</b><p class="muted">هذه نسخة تشغيلية قابلة للتخصيص. أسماء الدروس الدقيقة وترتيب جميع فصول كتب الوزارة تختلف بحسب الطبعة والفصل الدراسي؛ أرفق الكتب الرسمية أو حدّد الطبعة حتى تُدرج جميع الدروس دون تخمين. الروابط الرسمية للكتب والخطط موجودة أسفل الصفحة.</p></div>
+</section>
+<section id="course" class="hidden">
+ <div class="section-title"><div><button class="back" onclick="showHome()">← رجوع</button><h2 id="courseTitle" style="display:inline-block;margin-right:10px"></h2></div></div>
+ <div class="grade-grid" id="grades"></div>
+ <div id="gradeContent" class="hidden">
+  <div class="section-title"><h2 id="gradeTitle"></h2><span class="muted">اختر الفصل الدراسي</span></div>
+  <div class="tabs"><button class="tab active" onclick="setTerm(1,this)">الفصل الدراسي الأول</button><button class="tab" onclick="setTerm(2,this)">الفصل الدراسي الثاني</button><button class="tab" onclick="showActivities()">الأنشطة الإثرائية والعلاجية</button></div>
+  <div id="chapters"></div>
+  <div id="activities" class="hidden">
+   <div class="activity-grid">
+    <article class="activity"><h4>🌟 نشاط إثرائي 1</h4><p>ابحث عن تطبيق من الحياة اليومية يرتبط بموضوع الدرس، ثم اكتب تفسيرًا علميًا أو رياضيًا مدعّمًا بمثال.</p><button class="primary" onclick="openTask('إثرائي 1')">ابدأ النشاط</button></article>
+    <article class="activity"><h4>🌟 نشاط إثرائي 2</h4><p>صمّم خريطة مفاهيم أو مسألة من إعدادك توضّح العلاقة بين فكرتين من الوحدة.</p><button class="primary" onclick="openTask('إثرائي 2')">ابدأ النشاط</button></article>
+    <article class="activity"><h4>🩹 نشاط علاجي 1</h4><p>راجع المفاهيم الأساسية، ثم أجب عن أسئلة قصيرة متدرجة للتأكد من فهمك.</p><button class="green" onclick="openTask('علاجي 1')">ابدأ النشاط</button></article>
+    <article class="activity"><h4>🩹 نشاط علاجي 2</h4><p>تدرّب على أمثلة محلولة، ثم أعد حل مثال مشابه بنفسك.</p><button class="green" onclick="openTask('علاجي 2')">ابدأ النشاط</button></article>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+<footer>
+ <p>مصادر رسمية: <a href="https://www.edunet.bh/Econtent/BooksGuide" target="_blank">دليل الكتب المدرسية</a> • <a href="https://www.edunet.bh/Econtent/LessonsGuide" target="_blank">دليل الدروس والخطط الدراسية</a> • <a href="https://moe.gov.bh/ar/moe-educational-resources" target="_blank">الموارد التعليمية – وزارة التربية والتعليم</a></p>
+ <p>منصة تعليمية مساندة وليست بديلًا عن الكتب الرسمية.</p>
+</footer>
+<button class="admin-fab" title="لوحة الإدارة" onclick="adminLogin()">⚙</button>
+<div id="modal" class="modal hidden"><div class="modal-box"><div class="modal-head"><h3 id="modalTitle">النشاط</h3><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+<script>
+// ضع رابط نشر Google Apps Script هنا بعد نشر ملف Code.gs كـ Web App.
+const CONFIG={appsScriptUrl:"",googleSheetUrl:""};
+const PASSWORD="112233";
+const curriculum={
+ science:{
+  "الأول الإعدادي":[
+   {term:1,chapters:[["طبيعة العلم","مهارات الاستقصاء العلمي","القياس وجمع البيانات"],["المادة","حالات المادة","الخواص الفيزيائية والتغيرات"],["القوى والطاقة","القوة والحركة","الشغل والطاقة"]]},
+   {term:2,chapters:[["الكائنات الحية","تركيب الخلية","تنوع الكائنات الحية"],["الأنظمة البيئية","العلاقات الغذائية","التوازن البيئي"],["الأرض والفضاء","موارد الأرض","النظام الشمسي"]]}
+  ],
+  "الثاني الإعدادي":[
+   {term:1,chapters:[["الخلية والوراثة","تركيب الخلية ووظائفها","الانقسام الخلوي"],["المادة والتفاعلات","العناصر والمركبات","التغيرات الكيميائية"],["الحركة والقوى","السرعة والتسارع","قوانين الحركة"]]},
+   {term:2,chapters:[["أجهزة جسم الإنسان","الجهاز الهضمي","الجهاز التنفسي والدوري"],["الطاقة","الحرارة وانتقالها","الكهرباء والمغناطيسية"],["البيئة","التنوع الحيوي","حماية الموارد"]]}
+  ],
+  "الثالث الإعدادي":[
+   {term:1,chapters:[["الوراثة والتطور","المادة الوراثية","الصفات الوراثية"],["الكيمياء","الذرة والجدول الدوري","الروابط والتفاعلات الكيميائية"],["الفيزياء","الشغل والقدرة","الطاقة وتحولاتها"]]},
+   {term:2,chapters:[["أجهزة الجسم","التنظيم الهرموني والعصبي","المناعة والصحة"],["الأرض والفضاء","الصخور والعمليات الجيولوجية","النجوم والمجرات"],["البيئة والاستدامة","التلوث","التنمية المستدامة"]]}
+  ]
+ },
+ math:{
+  "الأول الإعدادي":[
+   {term:1,chapters:[["الأعداد والعمليات","الخطوات الأربع لحل المسألة","القوى والأسس","المربعات الكاملة والجذور التربيعية","ترتيب العمليات"],["الجبر","المتغيرات والتعابير الجبرية","المعادلات","خصائص العمليات","المتتابعات الحسابية","المعادلات والدوال"],["الهندسة والقياس","الزوايا والمضلعات","المحيط والمساحة"]]},
+   {term:2,chapters:[["الأعداد النسبية","الأعداد الصحيحة","الكسور والأعداد العشرية"],["النسبة والتناسب","النسبة المئوية","التناسب الطردي والعكسي"],["الإحصاء والاحتمال","تمثيل البيانات","مقاييس النزعة المركزية","الاحتمال"]]}
+  ],
+  "الثاني الإعدادي":[
+   {term:1,chapters:[["الأعداد الحقيقية","الأعداد النسبية وغير النسبية","الجذور التربيعية"],["الجبر","تبسيط العبارات الجبرية","حل المعادلات","المتباينات"],["الهندسة","المثلثات","التطابق والتشابه"]]},
+   {term:2,chapters:[["الدوال والعلاقات","العلاقات والدوال","التمثيل البياني"],["الهندسة والقياس","نظرية فيثاغورس","المساحات والحجوم"],["الإحصاء والاحتمال","تحليل البيانات","احتمالات الحوادث"]]}
+  ],
+  "الثالث الإعدادي":[
+   {term:1,chapters:[["الجبر","العبارات كثيرة الحدود","تحليل المقادير الجبرية","المعادلات التربيعية"],["الدوال","الدوال الخطية","ميل المستقيم","أنظمة المعادلات"],["الهندسة","الدائرة","التحويلات الهندسية"]]},
+   {term:2,chapters:[["المثلثات","النسب المثلثية","تطبيقات المثلثات"],["الإحصاء","التوزيعات والتمثيلات البيانية","مقاييس التشتت"],["الاحتمال","احتمالات مركبة","استعمالات الاحتمال"]]}
+  ]
+ }
+};
+let subject="science",grade="الأول الإعدادي",term=1,answersVisible={},done=JSON.parse(localStorage.getItem("doneActivities")||"[]"),scores=JSON.parse(localStorage.getItem("scores")||"[]");
+function showHome(){document.getElementById("home").classList.remove("hidden");document.getElementById("course").classList.add("hidden")}
+function chooseSubject(s){subject=s;document.getElementById("home").classList.add("hidden");document.getElementById("course").classList.remove("hidden");document.getElementById("courseTitle").textContent=s==="science"?"🧪 العلوم":"📐 الرياضيات";document.getElementById("gradeContent").classList.add("hidden");document.getElementById("grades").innerHTML=Object.keys(curriculum[s]).map(g=>`<div class="grade-card" onclick="chooseGrade('${g}')"><b>${g}</b><span class="muted">عرض الفصول والدروس</span></div>`).join("")}
+function chooseGrade(g){grade=g;document.getElementById("gradeTitle").textContent=grade+" – "+(subject==="science"?"العلوم":"الرياضيات");document.getElementById("gradeContent").classList.remove("hidden");document.getElementById("activities").classList.add("hidden");renderChapters()}
+function setTerm(t,el){term=t;document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("active"));el.classList.add("active");document.getElementById("activities").classList.add("hidden");renderChapters()}
+function renderChapters(){const data=curriculum[subject][grade].find(x=>x.term===term);document.getElementById("chapters").innerHTML=data.chapters.map((ch,i)=>{let key=`${subject}|${grade}|${term}|${i}`;let locked=localStorage.getItem("lock:"+key)==="1";return `<div class="chapter"><div class="chapter-head" onclick="this.nextElementSibling.classList.toggle('hidden')"><span>📘 الفصل ${i+1}: ${ch[0]} ${locked?"🔒":""}</span><span>⌄</span></div><div class="chapter-body ${locked?"hidden":""}">${ch.slice(1).map((l,j)=>{let id=`${key}|${j}`;return `<div class="lesson"><div><h4>${j+1}. ${l}</h4><small>الصف: ${grade} • الفصل الدراسي ${term}</small></div><div class="lesson-actions"><button class="primary" onclick="openLesson('${id}','${l.replace(/'/g,"")}')">افتح الدرس</button><button class="green" onclick="openTask('تدريب: ${l.replace(/'/g,"")}')">تدريب</button></div></div>`}).join("")}</div></div>`}).join("")}
+function showActivities(){document.getElementById("chapters").classList.add("hidden");document.getElementById("activities").classList.remove("hidden")}
+function openLesson(id,name){if(localStorage.getItem("lock:"+id.split("|").slice(0,4).join("|"))==="1"){alert("هذا الفصل مغلق حاليًا من لوحة الإدارة.");return}let show=localStorage.getItem("answers:"+subject+":"+grade+":"+term)!=="0";document.getElementById("modalTitle").textContent=name;document.getElementById("modalBody").innerHTML=`<p>أهلًا بك في درس <b>${name}</b>.</p><div class="question"><b>أهداف الدرس</b><p>• فهم المفاهيم الأساسية للدرس.</p><p>• تطبيق ما تعلمته في موقف جديد.</p><p>• تفسير النتائج والتأكد من صحة الحل.</p></div><p class="muted">أضف شرح الدرس الكامل والصور والوسائط من لوحة المعلم بعد اعتماد محتوى الكتاب الرسمي.</p>${show?'<div class="result">نموذج الإجابة: يضاف هنا الحل النموذجي المعتمد من المعلم.</div>':'<p class="muted">نموذج الإجابة مخفي من المعلم.</p>'}<button class="primary" onclick="openTask('تقويم درس: ${name.replace(/'/g,"")}')">ابدأ التقويم</button>`;openModal()}
+const questionBanks={
+ science:[
+  ["ما الوحدة الأساسية لبناء أجسام الكائنات الحية؟",["الخلية","الصخرة","الهواء"],0],
+  ["أيّ مما يأتي يُعدّ حالة من حالات المادة؟",["الضوء","السائل","الصوت"],1],
+  ["ما الغاز الذي تمتصه النباتات في عملية البناء الضوئي؟",["الأكسجين","ثاني أكسيد الكربون","النيتروجين"],1],
+  ["أي أداة تُستخدم لقياس درجة الحرارة؟",["المسطرة","الميزان","مقياس الحرارة"],2],
+  ["ما القوة التي تجذب الأجسام نحو الأرض؟",["الجاذبية","الاحتكاك","المغناطيسية"],0],
+  ["أيّ مما يأتي مصدر طاقة متجدد؟",["الفحم","النفط","الشمس"],2],
+  ["ماذا يحدث للماء عند التجمد؟",["يتحول إلى صلب","يتحول إلى غاز","يختفي"],0],
+  ["أي جزء من النبات يمتص الماء غالبًا من التربة؟",["الأزهار","الجذور","الأوراق"],1],
+  ["ما العضو المسؤول عن ضخ الدم في جسم الإنسان؟",["القلب","المعدة","الرئة"],0],
+  ["أيّ مما يأتي مثال على تغير كيميائي؟",["قطع الورق","صدأ الحديد","ذوبان الثلج"],1],
+  ["ما اسم انتقال الحرارة عبر الفراغ؟",["التوصيل","الحمل","الإشعاع"],2],
+  ["أي الكائنات التالية يُعدّ منتجًا في السلسلة الغذائية؟",["العشب","الأرنب","الثعلب"],0],
+  ["ما الكوكب الذي نعيش عليه؟",["المريخ","الأرض","زحل"],1],
+  ["أي جهاز في الجسم يساعد على تبادل الغازات؟",["الهضمي","التنفسي","الهيكلي"],1],
+  ["ما أفضل وصف للتنوع الحيوي؟",["تنوع الكائنات الحية","زيادة المباني","تغير الطقس يوميًا"],0]
+ ],
+ math:[
+  ["ما ناتج 8 + 7؟",["14","15","16"],1],
+  ["ما ناتج 9 × 6؟",["54","56","64"],0],
+  ["ما قيمة 24 ÷ 6؟",["3","4","6"],1],
+  ["أيّ الكسور الآتية يساوي النصف؟",["1/3","2/4","3/4"],1],
+  ["ما العدد الصحيح الذي يلي -2؟",["-3","-1","0"],1],
+  ["إذا كان س + 5 = 12، فما قيمة س؟",["5","7","17"],1],
+  ["ما محيط مربع طول ضلعه 4 سم؟",["8 سم","12 سم","16 سم"],2],
+  ["ما مساحة مستطيل طوله 6 سم وعرضه 3 سم؟",["9 سم²","18 سم²","24 سم²"],1],
+  ["ما قيمة 25% من 80؟",["10","20","25"],1],
+  ["ما نوع الزاوية التي قياسها 90 درجة؟",["حادة","قائمة","منفرجة"],1],
+  ["ما ناتج 3²؟",["6","9","12"],1],
+  ["ما المتوسط الحسابي للأعداد 2 و4 و6؟",["3","4","5"],1],
+  ["كم ضلعًا للمثلث؟",["3","4","5"],0],
+  ["إذا كان 2س = 18، فما قيمة س؟",["8","9","10"],1],
+  ["ما العدد العشري المكافئ للكسر 1/4؟",["0.2","0.25","0.5"],1]
+ ]
+};
+function openTask(name){
+ const bank=questionBanks[subject];
+ document.getElementById("modalTitle").textContent=name+" – 15 سؤالًا";
+ document.getElementById("modalBody").innerHTML=`<form id="taskForm" onsubmit="submitTask(event,'${name.replace(/'/g,"")}')"><div class="admin-grid"><div><label>اسم الطالب</label><input name="student" required placeholder="اكتب اسمك"></div><div><label>الصف</label><select name="grade"><option>الأول الإعدادي</option><option>الثاني الإعدادي</option><option>الثالث الإعدادي</option></select></div></div><label>المدرسة</label><input name="school" placeholder="اسم المدرسة"><p class="muted">أجب عن جميع الأسئلة. الدرجة النهائية تُعرض من 10.</p>${bank.map((q,i)=>`<div class="question"><b>${i+1}. ${q[0]}</b>${q[1].map((opt,j)=>`<label><input type="radio" name="q${i+1}" value="${j}" required> ${opt}</label>`).join("")}</div>`).join("")}<button class="primary" type="submit">إرسال الإجابات وعرض النتيجة</button></form>`;
+ openModal();
+}
+async function submitTask(e,name){
+ e.preventDefault();
+ const f=new FormData(e.target),bank=questionBanks[subject];
+ let correct=0,answers=[];
+ bank.forEach((q,i)=>{const val=Number(f.get("q"+(i+1)));if(val===q[2])correct++;answers.push(val)});
+ const score=Math.round((correct/15)*100)/10;
+ let record={student:f.get("student"),grade:f.get("grade"),school:f.get("school"),activity:name,answer1:answers.join("|"),answer2:"عدد الإجابات الصحيحة: "+correct+" من 15",score,createdAt:new Date().toISOString()};
+ done.push(record);scores.push(score);localStorage.setItem("doneActivities",JSON.stringify(done));localStorage.setItem("scores",JSON.stringify(scores));updateStats();
+ if(CONFIG.appsScriptUrl){try{await fetch(CONFIG.appsScriptUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(record)})}catch(err){console.warn(err)}}
+ document.getElementById("modalBody").innerHTML=`<div class="result"><h3>انتهى النشاط بنجاح 🎉</h3><p>إجابات صحيحة: <b>${correct} من 15</b></p><p>درجتك: <b>${score.toFixed(1)} من 10</b></p><p>${score>=8?"ممتاز! واصل التقدم.":score>=5?"أحسنت، راجع الأسئلة التي أخطأت فيها.":"لا تستسلم، راجع الدرس وحاول مرة أخرى."}</p></div>`;
+}
+function updateStats(){document.getElementById("doneCount").textContent=done.length;document.getElementById("avgScore").textContent=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1)+"/10":"—"}function openModal(){document.getElementById("modal").classList.remove("hidden")}function closeModal(){document.getElementById("modal").classList.add("hidden")}
+function adminLogin(){let p=prompt("أدخل كلمة مرور لوحة الإدارة");if(p===PASSWORD)adminPanel();else if(p!==null)alert("كلمة المرور غير صحيحة")}
+function adminPanel(){document.getElementById("modalTitle").textContent="لوحة تحكم المعلم";document.getElementById("modalBody").innerHTML=`<p class="muted">إدارة فتح وإغلاق الفصول وإظهار نماذج الإجابة.</p><div class="admin-row"><b>إدارة الفصول</b>${Object.entries(curriculum).map(([s,gs])=>Object.entries(gs).map(([g,terms])=>terms.map((t,ti)=>t.chapters.map((ch,i)=>{let key=`${s}|${g}|${ti+1}|${i}`,locked=localStorage.getItem("lock:"+key)==="1";return `<div class="admin-row"><b>${s==="science"?"العلوم":"الرياضيات"} – ${g} – فصل ${ti+1} – ${ch[0]}</b><button class="${locked?"green":"orange"}" onclick="toggleLock('${key}')">${locked?"فتح الفصل":"قفل الفصل"}</button></div>`}).join("")).join("")).join("")).join("")}</div><div class="admin-row"><b>نماذج الإجابة</b><p><button class="green" onclick="setAnswers(true)">إظهار نماذج الإجابة للعلوم والرياضيات</button> <button class="orange" onclick="setAnswers(false)">إخفاء نماذج الإجابة</button></p></div><div class="admin-row"><b>إحصائيات هذا الجهاز</b><p>الأنشطة المسجلة: ${done.length} • متوسط الدرجات: ${scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):0}/10</p><button class="primary" onclick="downloadCSV()">تنزيل النتائج CSV</button></div><div class="admin-row"><label>رابط Google Apps Script Web App</label><input id="scriptUrl" value="${CONFIG.appsScriptUrl}" placeholder="https://script.google.com/macros/s/.../exec"><label>رابط Google Sheet لفتحه على الهاتف</label><input id="sheetUrl" value="${CONFIG.googleSheetUrl}" placeholder="https://docs.google.com/spreadsheets/d/..."><button class="primary" onclick="saveConfig()">حفظ الروابط</button></div>`;openModal()}
+function toggleLock(key){localStorage.setItem("lock:"+key,localStorage.getItem("lock:"+key)==="1"?"0":"1");adminPanel();renderChapters()}
+function setAnswers(v){["science","math"].forEach(s=>Object.keys(curriculum[s]).forEach(g=>[1,2].forEach(t=>localStorage.setItem(`answers:${s}:${g}:${t}`,v?"1":"0"))));alert(v?"تم إظهار نماذج الإجابة":"تم إخفاء نماذج الإجابة");adminPanel()}
+function saveConfig(){CONFIG.appsScriptUrl=document.getElementById("scriptUrl").value.trim();CONFIG.googleSheetUrl=document.getElementById("sheetUrl").value.trim();localStorage.setItem("platformConfig",JSON.stringify(CONFIG));alert("حُفظت الروابط على هذا الجهاز");}
+function openSheet(){let c=JSON.parse(localStorage.getItem("platformConfig")||"{}");let url=c.googleSheetUrl||CONFIG.googleSheetUrl;if(url)window.open(url,"_blank");else alert("أضف رابط Google Sheet من لوحة الإدارة أولًا.")}
+function downloadCSV(){let rows=[["اسم الطالب","الصف","المدرسة","النشاط","الإجابة 1","الإجابة 2","الدرجة","التاريخ"],...done.map(x=>[x.student,x.grade,x.school,x.activity,x.answer1,x.answer2,x.score,x.createdAt])];let csv="\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v??"").replaceAll('"','""')+'"').join(",")).join("\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="نتائج-الطلاب.csv";a.click()}
+try{Object.assign(CONFIG,JSON.parse(localStorage.getItem("platformConfig")||"{}"))}catch(e){}updateStats();
+</script></body></html>
