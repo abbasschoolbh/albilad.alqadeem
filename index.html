@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الصف الإلكتروني | مدرسة البلاد القديم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#12345a;--blue:#1769aa;--teal:#14a39a;--gold:#f0b84b;--bg:#f3f7fb;--ink:#203247}
+*{box-sizing:border-box}body{margin:0;font-family:Cairo,Arial;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#102d50,#1769aa);color:white;padding:22px max(5%,calc((100% - 1100px)/2));position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:260px;height:260px;border:35px solid #ffffff16;border-radius:50%;left:-60px;top:-130px;animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translate(25px,35px) rotate(25deg)}}
+.brand{display:flex;gap:15px;align-items:center}.seal{width:64px;height:64px;border:2px solid #ffffff88;border-radius:50%;display:grid;place-items:center;font-size:27px;background:#ffffff16}
+h1{font-size:clamp(20px,4vw,30px);margin:0}.sub{opacity:.85;margin:5px 0 0;font-size:14px}
+main{max-width:1100px;margin:26px auto;padding:0 16px}.notice{background:#fff;border-right:4px solid var(--gold);padding:12px 16px;border-radius:12px;margin-bottom:18px}
+.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.subject{background:white;border-radius:18px;padding:22px;box-shadow:0 8px 25px #17395b12;transition:.25s}.subject:hover{transform:translateY(-4px)}
+.subject h2{margin:0 0 8px;color:var(--navy)}.subject p{color:#65778a;margin:0 0 16px}
+button,.btn{border:0;border-radius:10px;padding:11px 17px;background:var(--blue);color:white;font:inherit;cursor:pointer}button.secondary{background:#eaf1f8;color:var(--navy)}button:disabled{opacity:.45;cursor:not-allowed}
+.panel{background:white;margin-top:20px;padding:20px;border-radius:16px;box-shadow:0 8px 25px #17395b10}.hidden{display:none!important}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.filters select,.student input{font:inherit;padding:10px;border:1px solid #d8e1ea;border-radius:9px;background:white}
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.lesson{border:1px solid #e2eaf1;padding:15px;border-radius:13px}.lesson h3{margin:0 0 8px;color:var(--navy)}.muted{color:#718196;font-size:13px}
+.student{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0}
+.q{border-top:1px solid #e7edf3;padding:14px 0}.q label{display:block;font-weight:700;margin-bottom:8px}.q input{margin-left:7px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.stats{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.donut{width:125px;height:125px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--teal) 0deg,#e8eef4 0deg);position:relative}.donut:before{content:"";position:absolute;inset:13px;background:white;border-radius:50%}.donut strong{position:relative;font-size:23px}
+footer{text-align:center;padding:25px 15px;color:#687b8e;font-size:14px}a{color:var(--blue)}
+#feedback{width:100%;min-height:75px;border:1px solid #d8e1ea;border-radius:10px;padding:10px;font:inherit}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="seal" aria-label="شعار تعريفي">🎓</div><div><h1>الصف الإلكتروني</h1><p class="sub">مدرسة البلاد القديم الابتدائية الإعدادية للبنين</p></div></div></header>
+<main>
+<div class="notice">مرحباً بكم في منصة التعلم الإلكتروني. اختر المادة والصف والفصل، ثم افتح الدرس وابدأ الحل.</div>
+<section id="home" class="subjects">
+ <article class="subject"><h2>🔬 العلوم</h2><p>دروس وفعاليات العلوم للصف السادس وحتى الثالث الإعدادي، وفق وحدات المنهج.</p><button onclick="openSubject('science')">دخول قسم العلوم</button></article>
+ <article class="subject"><h2>📐 الرياضيات</h2><p>دروس وفعاليات الرياضيات للصف السادس وحتى الثالث الإعدادي.</p><button onclick="openSubject('math')">دخول قسم الرياضيات</button></article>
+</section>
+<section id="workspace" class="panel hidden">
+ <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h2 id="subjectTitle"></h2><div class="muted">اختر الصف والجزء والفصل لعرض الأنشطة المتاحة</div></div><button class="secondary" onclick="goHome()">العودة للمواد</button></div>
+ <div class="filters">
+  <select id="grade"><option value="السادس">الصف السادس</option><option>الأول الإعدادي</option><option>الثاني الإعدادي</option><option>الثالث الإعدادي</option></select>
+  <select id="part"><option>الجزء الأول</option><option>الجزء الثاني</option></select>
+  <select id="unit"><option value="">كل الفصول</option></select>
+ </div>
+ <div id="lessons" class="lesson-grid"><p class="muted">جارٍ تحميل الدروس…</p></div>
+ <div id="activity" class="panel hidden"><h2 id="activityTitle"></h2><p id="activityDesc"></p>
+  <div class="student"><input id="studentName" placeholder="اسم الطالب" required><select id="studentGrade"><option>السادس</option><option>الأول الإعدادي</option><option>الثاني الإعدادي</option><option>الثالث الإعدادي</option></select></div>
+  <div id="questions"></div><div class="actions"><button onclick="submitAnswers()">إرسال الإجابات</button><button class="secondary" onclick="document.getElementById('activity').classList.add('hidden')">إغلاق</button></div>
+  <div id="result" class="hidden"></div>
+ </div>
+</section>
+<section class="panel"><h2>📊 إحصائيات المنصة</h2><div class="stats"><div class="donut" id="donut"><strong id="statPercent">—</strong></div><div><b id="statCount">—</b><p class="muted">عدد المحاولات المسجلة</p><p class="muted">تعرض الإحصائيات نسبة الإجابات الصحيحة الإجمالية فقط، ولا يظهر جدول بأسماء الطلبة.</p></div></div></section>
+<section class="panel"><h2>💬 للمشاكل والاستفسارات</h2><p>للتواصل عبر Microsoft Teams:</p><a href="https://teams.microsoft.com/l/chat/0/0?users=abbas_m_ali0816%40moe.bh">abbas_m_ali0816@moe.bh</a><p class="muted">يمكنك أيضاً إرسال وصف المشكلة إلى البريد أعلاه.</p><textarea id="feedback" placeholder="اكتب وصف المشكلة (لن يتم إرساله تلقائياً)"></textarea></section>
+</main>
+<footer>© مدرسة البلاد القديم الابتدائية الإعدادية للبنين — منصة تعليمية</footer>
+<script>
+const API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+let currentSubject="", currentActivity=null, catalog=[];
+const $=id=>document.getElementById(id);
+function openSubject(s){currentSubject=s;$("home").classList.add("hidden");$("workspace").classList.remove("hidden");$("subjectTitle").textContent=s==="science"?"قسم العلوم":"قسم الرياضيات";loadCatalog();}
+function goHome(){$("workspace").classList.add("hidden");$("home").classList.remove("hidden");$("activity").classList.add("hidden")}
+async function api(action,data={}){if(API_URL.startsWith("PASTE_"))throw new Error("يجب وضع رابط تطبيق Google Apps Script في المتغير API_URL.");const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,...data})});const j=await r.json();if(!j.ok)throw new Error(j.error||"حدث خطأ");return j}
+async function loadCatalog(){ $("lessons").innerHTML="<p>جارٍ التحميل…</p>";try{const j=await api("getActivities",{subject:currentSubject,grade:$("grade").value,part:$("part").value});catalog=j.activities||[];const units=[...new Set(catalog.map(x=>x.unit).filter(Boolean))];$("unit").innerHTML='<option value="">كل الفصول</option>'+units.map(x=>`<option>${esc(x)}</option>`).join("");renderLessons();loadStats()}catch(e){$("lessons").innerHTML=`<p class="muted">${esc(e.message)}<br>تأكد من إعداد Apps Script وإضافة بيانات الأنشطة في Google Sheet.</p>`}}
+function renderLessons(){let list=catalog.filter(x=>!$("unit").value||x.unit===$("unit").value);$("lessons").innerHTML=list.length?list.map((x,i)=>`<article class="lesson"><h3>${esc(x.title)}</h3><div class="muted">${esc(x.unit||"")}</div><p>${esc(x.description||"")}</p><button ${x.open===false?"disabled":""} onclick="startActivity('${escAttr(x.id)}')">${x.open===false?"النشاط مغلق":"ابدأ النشاط"}</button></article>`).join(""):"<p class='muted'>لا توجد دروس منشورة لهذا الاختيار حالياً.</p>"}
+async function startActivity(id){currentActivity=catalog.find(x=>x.id===id);if(!currentActivity)return;try{const j=await api("getActivity",{id});currentActivity=j.activity;$("activityTitle").textContent=currentActivity.title;$("activityDesc").textContent=currentActivity.description||"";$("studentGrade").value=$("grade").value;$("questions").innerHTML=(currentActivity.questions||[]).map((q,i)=>`<div class="q"><label>${i+1}. ${esc(q.text)}</label>${(q.choices||[]).map(c=>`<label><input type="radio" name="q${i}" value="${escAttr(c)}">${esc(c)}</label>`).join("")}</div>`).join("");$("result").classList.add("hidden");$("activity").classList.remove("hidden");$("activity").scrollIntoView({behavior:"smooth"})}catch(e){alert(e.message)}}
+async function submitAnswers(){const name=$("studentName").value.trim();if(!name){alert("يرجى كتابة اسم الطالب");return}const answers=(currentActivity.questions||[]).map((q,i)=>{const v=document.querySelector(`input[name="q${i}"]:checked`);return v?v.value:""});if(answers.some(x=>!x)){alert("يرجى الإجابة عن جميع الأسئلة");return}try{const j=await api("submit",{activityId:currentActivity.id,studentName:name,grade:$("studentGrade").value,answers});$("result").classList.remove("hidden");$("result").innerHTML=`<h3>نتيجتك: ${j.score} من 10</h3><p>عدد الإجابات الصحيحة: ${j.correct} من ${j.total}</p><p class="muted">تم تسجيل المحاولة دون عرض جدول أسماء الطلبة.</p>`;loadStats()}catch(e){alert(e.message)}}
+async function loadStats(){try{const j=await api("getStats");const p=j.percent||0;$("statPercent").textContent=p+"%";$("statCount").textContent=j.attempts||0;$("donut").style.background=`conic-gradient(var(--teal) ${p*3.6}deg,#e8eef4 0deg)`}catch(e){}}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function escAttr(s){return esc(s).replace(/`/g,"&#96;")}
+["grade","part","unit"].forEach(id=>$(id).addEventListener("change",()=>id==="unit"?renderLessons():loadCatalog()));
+</script>
+</body></html>
